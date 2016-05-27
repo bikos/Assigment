@@ -40,7 +40,7 @@ page below the form. Choose: AngularJS/JQuery/Standard JavaScript
                 </div>
                 <div class="form-group">
                     <label for="pwd">Phone Number:</label>
-                    <input type="number" class="form-control" id="phoneNumber" placeholder="Enter Phone Number" required>
+                    <input type="text" class="form-control" id="phoneNumber" placeholder="XX XXXX XXXX" required>
                 </div>
                 <div class="form-group">
                     <label for="pwd">Date:</label>
@@ -62,7 +62,18 @@ page below the form. Choose: AngularJS/JQuery/Standard JavaScript
     <script src="js/jquery-2.2.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+	<script src="jquery.maskedinput.js"></script>
 
+	<script src="https://raw.githubusercontent.com/igorescobar/jQuery-Mask-Plugin/master/src/jquery.mask.js"></script>
+<script>
+$(document).ready(function($){
+    $("#phoneNumber").mask("(99) 9999-9999"); 
+    
+});
+</script>
+	
+	
+	
     <script>
         function onSumbit() {
             if ($("#name")[0].checkValidity() && $("#email")[0].checkValidity() && $("#phoneNumber")[0].checkValidity() && $("#datepicker")[0].checkValidity()) {
@@ -84,6 +95,10 @@ page below the form. Choose: AngularJS/JQuery/Standard JavaScript
                 dateFormat: "yy-mm-dd"
             });
         });
+		
+		
+		
+		
     </script>
 </body>
 </html>
