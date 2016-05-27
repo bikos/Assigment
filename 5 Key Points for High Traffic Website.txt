@@ -1,0 +1,23 @@
+Name five key points to think about when developing for a high traffic website.
+
+
+Following are five key points to be considered to achieve scalability for a high traffic website.
+
+1. Caching:
+	Increase efficiency through server-side caching
+
+2. Increase Database performance
+	Use methods for high-availablity of databases through database scaling
+
+3. Provide Higher Availability
+	Remove single point of failure by adding redundancy and decoupling the components
+
+4. Performance Tuning
+	Focus on performance tuning; existing sytem might be scaled up with some tweaks in the system.
+
+5. Load Balancer
+	Use Load Balancer to distribute load across a set of nodes responsible for servicing requests. 
+
+
+
+

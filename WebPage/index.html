@@ -1,0 +1,89 @@
+<!--
+Build a simple page in HTML5 that has a header, main content, and footer.
+In the main content build a form that contains name, email address, phone
+number, and a date in the format of YYYY­MM­DD. All fields are required
+and must be valid input. On valid submit just display the form data on the
+page below the form. Choose: AngularJS/JQuery/Standard JavaScript
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header>
+            <a href="#" class="pull-left"><img src="EP-Logo-notag.png" class="img-responsive"></a>
+            <img alt="Bootstrap Image Preview" src="laundrybanner.jpg" class="img-responsive">
+        </header>
+        <div class="row main">
+            <form class="cmxform" id="contact" method="post" action="">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Phone Number:</label>
+                    <input type="number" class="form-control" id="phoneNumber" placeholder="Enter Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Date:</label>
+                    <input type="text" class="form-control" name="datepicker" id="datepicker" placeholder="Select a  Date"  style="background:white;" required>
+                </div>
+                <button onclick="return onSumbit();" id="submitButton" type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="pull-center">
+            <div class="jumbotron">
+                <p id="preview" class="text-center text-success"></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+
+    <script>
+        function onSumbit() {
+            if ($("#name")[0].checkValidity() && $("#email")[0].checkValidity() && $("#phoneNumber")[0].checkValidity() && $("#datepicker")[0].checkValidity()) {
+                var value =
+                        "Name: " + $("#name").val() + "<br/>" +
+                        "Email: " + $("#email").val() + "<br/>" +
+                        "Phone Number: " + $("#phoneNumber").val() + "<br/>" +
+                        "Date: " + $("#datepicker").val();
+                $('#preview').html(value);
+                $("#preview").show();
+                return false;
+            }
+            else {
+                $("#preview").hide();
+            }
+        }
+        $(function() {
+            $( "#datepicker" ).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        });
+    </script>
+</body>
+</html>
