@@ -1,104 +1,438 @@
-<!--
-Build a simple page in HTML5 that has a header, main content, and footer.
-In the main content build a form that contains name, email address, phone
-number, and a date in the format of YYYY­MM­DD. All fields are required
-and must be valid input. On valid submit just display the form data on the
-page below the form. Choose: AngularJS/JQuery/Standard JavaScript
--->
+<!doctype html>
+<html lang="us">
 
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet">
-
+	<meta charset="utf-8">
+	<title>IT Risk Calculator</title>
+	<link href="jquery-ui.css" rel="stylesheet">
+	<style>
+		body {
+			font-family: "Trebuchet MS", sans-serif;
+			margin: 50px;
+		}
+		
+		.demoHeaders {
+			margin-top: 2em;
+		}
+		
+		#dialog-link {
+			padding: .4em 1em .4em 20px;
+			text-decoration: none;
+			position: relative;
+		}
+		
+		#dialog-link span.ui-icon {
+			margin: 0 5px 0 0;
+			position: absolute;
+			left: .2em;
+			top: 50%;
+			margin-top: -8px;
+		}
+		
+		#icons {
+			margin: 0;
+			padding: 0;
+		}
+		
+		#icons li {
+			margin: 2px;
+			position: relative;
+			padding: 4px 0;
+			cursor: pointer;
+			float: left;
+			list-style: none;
+		}
+		
+		#icons span.ui-icon {
+			float: left;
+			margin: 0 4px;
+		}
+		
+		.fakewindowcontain .ui-widget-overlay {
+			position: absolute;
+		}
+		
+		.my-error-class {
+			color: #FF0000;
+			/* red */
+		}
+		
+		.my-valid-class {
+			color: #00CC00;
+			font-style: x-large;
+			text-align: center;
+			/* green */
+		}
+		
+		select.error,
+		textarea.error,
+		input.error {
+			color: #FF0000;
+		}
+		
+		.notice{
+			background: #DBDCB2;
+			color: green;
+			font-size: x-large;
+			font-style: bold;
+		}
+		
+		form {
+			padding: 20px;
+			background: #2c3e50;
+			color: #fff;
+			-moz-border-radius: 4px;
+			-webkit-border-radius: 4px;
+			border-radius: 4px;
+		
+		
+		form label,
+		form input,
+		 {
+			border: 0;
+			margin-bottom: 3px;
+			display: block;
+			width: 100%;
+			
+		}
+		
+		form input {
+			height: 25px;
+			line-height: 25px;
+			background: #fff;
+			color: #000;
+			padding: 0 6px;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		
+		form button {
+			height: 30px;
+			line-height: 30px;
+			background: #fff;
+			color: green;
+			margin-top: 10px;
+			cursor: pointer;
+			width: 100%;
+		}
+		
+		form .error {
+			color: #ff0000;
+		}
+		}
+	</style>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <header>
-            <a href="#" class="pull-left"><img src="EP-Logo-notag.png" class="img-responsive"></a>
-            <img alt="Bootstrap Image Preview" src="laundrybanner.jpg" class="img-responsive">
-        </header>
-        <div class="row main">
-            <form class="cmxform" id="contact" method="post" action="">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
-                </div>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Phone Number:</label>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="XX XXXX XXXX" required>
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Date:</label>
-                    <input type="text" class="form-control" name="datepicker" id="datepicker" placeholder="Select a  Date"  style="background:white;" required>
-                </div>
-                <button onclick="return onSumbit();" id="submitButton" type="submit" class="btn btn-default">Submit</button>
-            </form>
-        </div>
-    </div>
 
-    <footer>
-        <div class="pull-center">
-            <div class="jumbotron">
-                <p id="preview" class="text-center text-success"></p>
-            </div>
-        </div>
-    </footer>
+	<h1 style="text-align:center">Game Theory Based Risk Computation</h1>
 
-    <script src="js/jquery-2.2.3.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-	<script src="jquery.maskedinput.js"></script>
+	<div class="ui-widget" style="text-align:center">
+		<p>Please use this interface to compare and contrast the different risk scoring methods. Please click any of the options avialable from the drop down menu</p>
 
-	<script src="https://raw.githubusercontent.com/igorescobar/jQuery-Mask-Plugin/master/src/jquery.mask.js"></script>
-<script>
-$(document).ready(function($){
-    $("#phoneNumber").mask("(99) 9999-9999"); 
-    
-});
-</script>
-	
-	
-	
-    <script>
-        function onSumbit() {
-            if ($("#name")[0].checkValidity() && $("#email")[0].checkValidity() && $("#phoneNumber")[0].checkValidity() && $("#datepicker")[0].checkValidity()) {
-                var value =
-                        "Name: " + $("#name").val() + "<br/>" +
-                        "Email: " + $("#email").val() + "<br/>" +
-                        "Phone Number: " + $("#phoneNumber").val() + "<br/>" +
-                        "Date: " + $("#datepicker").val();
-                $('#preview').html(value);
-                $("#preview").show();
-                return false;
-            }
-            else {
-                $("#preview").hide();
-            }
-        }
-        $(function() {
-            $( "#datepicker" ).datepicker({
-                dateFormat: "yy-mm-dd"
-            });
-        });
+		<h2 class="demoHeaders">Risk Computation Menu</h2>
+
+		<div>
+			<select id="myselect">
+				<option selected disabled>Select One option</option>
+				<option value="1" >Traditional</option>
+				<option value="2">Game Theory</option>
+				<option value="3">Mixed</option>
+
+			</select>
+		</div>
+		<br>
+
+		<div id="computationArea">
+		<div id="traditionalCheck">
+			<h3>Traditional Method</h3>
+			<form id="traditionalForm">
+				<br> Asset Value:
+				<br>
+				<input type="number" id="asset" name="asset" value="">
+				<br> Risk Value:
+				<br>
+				<input type="number" id="risk" name="risk" value="">
+				<br> Uncertainity:
+				<br>
+				<input type="number" id="uncertanity" name="uncertanity" value="">
+				<br>
+				<br>
+				<input type="submit" value="Compute">
+				<label id="messageBox" generated="true" class="error"></label>
+			</form>
+			<br>
+			<p class="notice" id="traditionalText"></p>
+
+		</div>
+		
+		<div id="gameTheoryCheck">
+				<h3>GameTheory Method</h3>
+			<form id="gameTheoryForm">
+				<br> Asset Value:
+				<br>
+				<input type="number" id="asset" name="asset" value="">
+				<br> Risk Value:
+				<br>
+				<input type="number" id="risk" name="risk" value="">
+				<br> Uncertainity:
+				<br>
+				<input type="number" id="uncertanity" name="uncertanity" value="">
+				<br>
+				<br>
+				<input type="submit" value="Compute">
+				<label id="messageBox" generated="true" class="error"></label>
+			</form>
+			<br>
+			<p class="notice" id="traditionalText"></p>
+
+		</div>
 		
 		
 		
+		<div id="mixedCheck">
+				<h3>Mixed Method</h3>
+			<form id="mixedForm">
+				<br> Asset Value:
+				<br>
+				<input type="number" id="asset" name="asset" value="">
+				<br> Risk Value:
+				<br>
+				<input type="number" id="risk" name="risk" value="">
+				<br> Uncertainity:
+				<br>
+				<input type="number" id="uncertanity" name="uncertanity" value="">
+				<br>
+				<br>
+				<input type="submit" value="Compute">
+				<label id="messageBox" generated="true" class="error"></label>
+			</form>
+			<br>
+			<p class="notice" id="traditionalText"></p>
+
+		</div>
+		</div>
 		
-    </script>
+		
+	</div>
+
+	<script src="external/jquery/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+
+
+	<script src="jquery-ui.js"></script>
+
+
+	<script>
+		//////////////////////////////////////////////////////
+		$("#traditionalCheck").hide();
+		$("#gameTheoryCheck").hide();
+		$("#mixedCheck").hide();
+		
+		jQuery('#myselect').on('change', (function () {
+			var value = $(this).val();
+
+			if (value == 1) {
+				$("#gameTheoryCheck").slideUp( 300, "swing");
+				$("#mixedCheck").slideUp( 300, "swing");
+				$("#traditionalCheck").slideDown( 300, "swing");
+				$("#traditionalForm").submit(function(){
+					//alert("submit clicked");
+					var riskScore = calculateTraditional();
+					$("#traditionalText").text("The risk score for given device is "+ riskScore );
+				});
+
+				
+
+				// calculate values
+
+				//display value
+				//calculateTraditional();
+			}
+
+			if (value == 2) {
+				$("#traditionalCheck").slideUp( 300, "swing");
+				$("#mixedCheck").slideUp( 300, "swing");
+				$("#gameTheoryCheck").slideDown( 300, "swing");
+				$("#traditionalForm").submit(function(){
+					//alert("submit clicked");
+					var riskScore = calculateTraditional();
+					$("#traditionalText").text("The risk score for given device is "+ riskScore );
+				});
+
+
+			}
+			if (value == 3) {
+				$("#traditionalCheck").slideUp( 300, "swing");
+				$("#gameTheoryCheck").slideUp( 300, "swing");
+				$("#mixedCheck").slideDown( 300, "swing");
+				$("#traditionalForm").submit(function(){
+					//alert("submit clicked");
+					var riskScore = calculateTraditional();
+					$("#traditionalText").text("The risk score for given device is "+ riskScore );
+				});
+
+
+			}
+
+		}));
+		
+		
+		
+		function calculateTraditional(){
+			
+			 var asset = $("#asset").val();
+			var risk = $("#risk").val();
+			var uncertanity = $("#uncertanity").val();
+			return(+asset*+risk*+uncertanity);
+			
+			
+		}
+
+		// *** validators ***//
+
+		jQuery.validator.setDefaults({
+			debug: true
+			, success: "valid"
+			, errorClass: "my-error-class"
+			, validClass: "my-valid-class"
+
+
+		});
+		
+		// validate form values
+		$("#traditionalForm").validate({
+			
+			 wrapper: 'div',
+        	errorLabelContainer: "#messageBox",
+			
+			rules: {
+				asset: {
+					required: true,
+				}
+				, risk: {
+					required: true,
+
+				}
+				, uncertanity: {
+					required: true,
+
+				}
+
+			},
+			messages:{
+				
+				asset: "asset value is required between 0-100",
+				risk: "risk score is required between 0-1",
+				uncertanity: "uncertainity is required between 0-1",
+			}
+		});
+
+
+
+
+		////////////////////////////////////////////////////////////////////////////////
+
+
+		// default Jquery UI values do not touch
+
+		$("#button").button();
+		$("#button-icon").button({
+			icon: "ui-icon-gear"
+			, showLabel: false
+		});
+
+
+
+		$("#radioset").buttonset();
+
+
+
+		$("#controlgroup").controlgroup();
+
+
+
+		$("#tabs").tabs();
+
+
+
+		$("#dialog").dialog({
+			autoOpen: false
+			, width: 400
+			, buttons: [
+				{
+					text: "Ok"
+					, click: function () {
+						$(this).dialog("close");
+					}
+		}
+
+				
+				, {
+					text: "Cancel"
+					, click: function () {
+						$(this).dialog("close");
+					}
+		}
+	]
+		});
+
+		// Link to open the dialog
+		$("#dialog-link").click(function (event) {
+			$("#dialog").dialog("open");
+			event.preventDefault();
+		});
+
+
+
+		$("#datepicker").datepicker({
+			inline: true
+		});
+
+
+
+		$("#slider").slider({
+			range: true
+			, values: [17, 67]
+		});
+
+
+
+		$("#progressbar").progressbar({
+			value: 20
+		});
+
+
+
+		$("#spinner").spinner();
+
+
+
+		$("#menu").menu();
+
+
+
+		$("#tooltip").tooltip();
+
+
+
+		$("#selectmenu").selectmenu();
+
+
+		// Hover states on the static widgets
+		$("#dialog-link, #icons li").hover(
+			function () {
+				$(this).addClass("ui-state-hover");
+			}
+			, function () {
+				$(this).removeClass("ui-state-hover");
+			}
+		);
+	</script>
 </body>
+
 </html>
